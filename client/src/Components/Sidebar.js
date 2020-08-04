@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 import { COLORS } from "../constants";
-import { FiHome } from "react-icons/fi";
+import { FiHome, FiUser, FiBookmark, FiBell } from "react-icons/fi";
 
 const Sidebar = () => {
   return (
@@ -12,40 +12,26 @@ const Sidebar = () => {
       <NavList>
         <li>
           <NavigationItem activeClassName="active" to="/">
-            <svg viewBox="0 0 24 24" width="25px" height="25px">
-              <path d={FiHome} fill={COLORS.primary} />
-            </svg>
-            <p>Home</p>
+            <FiHome />
+            <span>Home</span>
           </NavigationItem>
         </li>
         <li>
-          <NavigationItem
-            activeClassName="active"
-            to="/markyMark"
-            icon={FiHome}
-            alt="bookmark icon"
-          >
-            Profile
+          <NavigationItem activeClassName="active" to="/markyMark">
+            <FiUser />
+            <span>Profile</span>
           </NavigationItem>
         </li>
         <li>
-          <NavigationItem
-            activeClassName="active"
-            to="/notifications"
-            icon={FiHome}
-            alt="bookmark icon"
-          >
-            Notifications
+          <NavigationItem activeClassName="active" to="/notifications">
+            <FiBell />
+            <span>Notifications</span>
           </NavigationItem>
         </li>
         <li>
-          <NavigationItem
-            activeClassName="active"
-            to="/bookmarks"
-            icon={FiHome}
-            alt="bookmark icon"
-          >
-            Bookmarks
+          <NavigationItem activeClassName="active" to="/bookmarks">
+            <FiBookmark />
+            <span>Bookmarks</span>
           </NavigationItem>
         </li>
       </NavList>
@@ -72,6 +58,8 @@ const NavigationItem = styled(NavLink)`
   border-radius: 15px;
   height: 25px;
   text-decoration: none;
+  font-size: 20px;
+  font-weight: bold;
 
   &:hover {
     background: purple;
