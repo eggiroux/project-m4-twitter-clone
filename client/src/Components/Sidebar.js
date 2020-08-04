@@ -3,15 +3,16 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 import { COLORS } from "../constants";
+import logoSrc from "../assets/logo.svg";
 import { FiHome, FiUser, FiBookmark, FiBell } from "react-icons/fi";
 
 const Sidebar = () => {
   return (
     <Wrapper>
-      <Logo src="../assets/logo.svg" alt="critter logo" />
+      <Logo src={logoSrc} alt="critter logo" />
       <NavList>
         <li>
-          <NavigationItem activeClassName="active" to="/">
+          <NavigationItem activeClassName="active" to="/" exact={true}>
             <FiHome />
             <span>Home</span>
           </NavigationItem>
@@ -39,30 +40,52 @@ const Sidebar = () => {
   );
 };
 
-const Logo = styled.img``;
+const Logo = styled.img`
+  height: 40px;
+  width: 40px;
+  margin: 0 5px;
+`;
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 300px;
+  justify-content: start;
   height: 100vh;
+  margin: 0 30px 0 100px;
 `;
 
 const NavList = styled.ul`
   list-style-type: none;
   display: flex;
   flex-direction: column;
+  margin-top: 10px;
 `;
 
 const NavigationItem = styled(NavLink)`
-  border-radius: 15px;
-  height: 25px;
+  display: inline-block;
+  border-radius: 25px;
+  height: 45px;
   text-decoration: none;
   font-size: 20px;
   font-weight: bold;
+  color: black;
+  padding: 10px 20px 10px 15px;
 
   &:hover {
-    background: purple;
+    background: ${COLORS.highlight};
+    color: ${COLORS.primary};
+  }
+
+  &:hover span {
+    color: ${COLORS.primary};
+  }
+
+  & span {
+    padding-left: 20px;
+  }
+
+  &.active {
+    color: ${COLORS.primary};
   }
 `;
 
