@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import styled from "styled-components";
 
 import GlobalStyles from "./GlobalStyles";
+import { CurrentUserContext } from "./Components/CurrentUserContext";
 
 import HomeFeed from "./Components/HomeFeed";
 import Notifications from "./Components/Notifications";
@@ -10,31 +11,37 @@ import Bookmarks from "./Components/Bookmarks";
 import TweetDetails from "./Components/TweetDetails";
 import Profile from "./Components/Profile";
 import Sidebar from "./Components/Sidebar";
+import Spinner from "./Components/Spinner";
 
 const App = () => {
+  const { isLoadingDone } = React.useContext(CurrentUserContext);
   return (
     <>
       <GlobalStyles />
       <Router>
         <Main>
           <Sidebar></Sidebar>
-          <Switch>
-            <Route exact path="/">
-              <HomeFeed />
-            </Route>
-            <Route path="/notifications">
-              <Notifications />
-            </Route>
-            <Route path="/bookmarks">
-              <Bookmarks />
-            </Route>
-            <Route path="/tweet/:tweetId">
-              <TweetDetails />
-            </Route>
-            <Route path="/:profileId">
-              <Profile />
-            </Route>
-          </Switch>
+          {isLoadingDone ? (
+            <Switch>
+              <Route exact path="/">
+                <HomeFeed />
+              </Route>
+              <Route path="/notifications">
+                <Notifications />
+              </Route>
+              <Route path="/bookmarks">
+                <Bookmarks />
+              </Route>
+              <Route path="/tweet/:tweetId">
+                <TweetDetails />
+              </Route>
+              <Route path="/:profileId">
+                <Profile />
+              </Route>
+            </Switch>
+          ) : (
+            <Spinner size="50px" />
+          )}
         </Main>
       </Router>
     </>
