@@ -18,7 +18,7 @@ const Sidebar = () => {
           </NavigationItem>
         </li>
         <li>
-          <NavigationItem activeClassName="active" to="/markyMark">
+          <NavigationItem activeClassName="active" to="/me">
             <FiUser />
             <span>Profile</span>
           </NavigationItem>

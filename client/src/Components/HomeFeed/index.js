@@ -18,8 +18,8 @@ const HomeFeed = () => {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 50%;
-  max-width: 650px;
+  width: 80%;
+  max-width: 750px;
   border: 1px lightgrey solid;
   border-top: none;
   position: relative;

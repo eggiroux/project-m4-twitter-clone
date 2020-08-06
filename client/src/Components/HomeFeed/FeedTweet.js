@@ -26,7 +26,7 @@ const FeedTweet = ({ tweet }) => {
 
   return (
     <Wrapper>
-      <Avatar size="50px" avatarSrc={tweet.author.avatarSrc} />
+      <Avatar size="50px" avatarSrc={tweet.author.avatarSrc} margin="10px" />
       <Body>
         {retweetedFrom && (
           <RetweetedFrom>

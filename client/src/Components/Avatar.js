@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const Avatar = ({ size, avatarSrc }) => {
+const Avatar = ({ size, avatarSrc, margin, border }) => {
   return (
     <img
       src={avatarSrc}
@@ -9,7 +9,9 @@ const Avatar = ({ size, avatarSrc }) => {
         borderRadius: "50%",
         height: size,
         width: size,
-        margin: "10px",
+        border: border,
+        margin: margin,
+        zIndex: 1,
       }}
     />
   );
