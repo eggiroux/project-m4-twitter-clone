@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import Header from "../Header";
 import ComposeTweet from "./ComposeTweet";
-import Feed from "./Feed";
+import Feed from "../Feed";
 
 const HomeFeed = () => {
   return (

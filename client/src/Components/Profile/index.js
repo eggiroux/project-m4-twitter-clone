@@ -5,7 +5,7 @@ import styled from "styled-components";
 import Spinner from "../Spinner";
 import Avatar from "../Avatar";
 import ProfileInfos from "./ProfileInfos";
-import Feed from "../HomeFeed/Feed";
+import Feed from "../Feed";
 
 const Profile = ({}) => {
   const { profileId } = useParams();
@@ -46,13 +46,8 @@ const Profile = ({}) => {
             numFollowers={profile.numFollowers}
             numFollowing={profile.numFollowing}
           />
+          <Feed feedUrl={`api/${profile.handle}/feed`} />
         </>
-      ) : (
-        <Spinner size="50px" />
-      )}
-
-      {profile ? (
-        <Feed feedUrl={`api/${profile.handle}/feed`} />
       ) : (
         <Spinner size="50px" />
       )}

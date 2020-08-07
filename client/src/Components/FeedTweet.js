@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import moment from "moment";
 
-import Avatar from "../Avatar";
-import ActionBar from "../ActionBar";
+import Avatar from "./Avatar";
+import ActionBar from "./ActionBar";
 import { FiRepeat } from "react-icons/fi";
 
 const FeedTweet = ({ tweet }) => {
@@ -13,7 +13,7 @@ const FeedTweet = ({ tweet }) => {
   let mediaSrc;
   let retweetedFrom;
 
-  console.log(tweet);
+  //console.log(tweet);
 
   if (tweet.media[0]) {
     mediaType = tweet.media[0].type;
