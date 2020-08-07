@@ -10,7 +10,7 @@ const HomeFeed = () => {
     <Wrapper>
       <Header title="Home" />
       <ComposeTweet />
-      <Feed />
+      <Feed feedUrl="/api/me/home-feed" />
     </Wrapper>
   );
 };

@@ -4,14 +4,14 @@ import styled from "styled-components";
 import Spinner from "../Spinner";
 import FeedTweet from "./FeedTweet";
 
-const Feed = ({}) => {
+const Feed = ({ feedUrl }) => {
   const [isFeedLoaded, setIsFeedLoaded] = React.useState(false);
   const [tweetsById, setTweetsById] = React.useState([]);
   const [tweetIds, setTweetsIds] = React.useState([]);
 
   React.useEffect(() => {
     const fetchFeed = async () => {
-      const response = await fetch(`/api/me/home-feed`);
+      const response = await fetch(`${feedUrl}`);
       const feed = await response.json();
       setTweetsById(feed.tweetsById);
       setTweetsIds(feed.tweetIds);

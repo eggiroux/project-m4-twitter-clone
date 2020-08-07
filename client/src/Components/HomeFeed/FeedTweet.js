@@ -86,7 +86,7 @@ const Media = styled.img`
 
 const Status = styled.p`
   font-weight: normal;
-  margin: 15px 0;
+  margin: 15px 0 20px;
 `;
 
 export default FeedTweet;

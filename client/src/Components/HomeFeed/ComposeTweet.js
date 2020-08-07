@@ -12,7 +12,7 @@ const ComposeTweet = () => {
 
   return (
     <Wrapper>
-      <Avatar size="50px" avatarSrc={currentUser.avatarSrc} />
+      <Avatar size="50px" avatarSrc={currentUser.avatarSrc} margin="10px" />
       <form style={{ width: "100%" }}>
         <TextInput />
         <Button>Meow</Button>
