@@ -4,13 +4,24 @@ import styled from "styled-components";
 import Header from "../Header";
 import ComposeTweet from "./ComposeTweet";
 import Feed from "../Feed";
+import { CurrentUserContext } from "../CurrentUserContext";
+
+import Error from "../Error";
 
 const HomeFeed = () => {
+  const { userError } = React.useContext(CurrentUserContext);
+  console.log(userError);
   return (
     <Wrapper>
-      <Header title="Home" />
-      <ComposeTweet />
-      <Feed feedUrl="/api/me/home-feed" />
+      {userError ? (
+        <Error />
+      ) : (
+        <>
+          <Header title="Home" />
+          <ComposeTweet />
+          <Feed feedUrl="/api/me/home-feed" />{" "}
+        </>
+      )}
     </Wrapper>
   );
 };

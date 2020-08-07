@@ -67,9 +67,7 @@ const WhenAndWhere = styled.p`
   color: grey;
 `;
 
-const Location = styled.span`
-  margin-left: 5px;
-`;
+const Location = styled.span``;
 
 const Joined = styled.span`
   margin-left: 20px;
@@ -84,7 +82,7 @@ const Relationships = styled.p`
   }
 
   & span {
-    margin-left: 20px;
+    margin-left: 10px;
   }
 `;
 

@@ -12,9 +12,10 @@ import TweetDetails from "./Components/TweetDetails";
 import Profile from "./Components/Profile";
 import Sidebar from "./Components/Sidebar";
 import Spinner from "./Components/Spinner";
+import Error from "./Components/Error";
 
 const App = () => {
-  const { isLoadingDone } = React.useContext(CurrentUserContext);
+  const { isLoadingDone, userError } = React.useContext(CurrentUserContext);
   return (
     <>
       <GlobalStyles />

@@ -7,7 +7,7 @@ import Avatar from "../Avatar";
 import ProfileInfos from "./ProfileInfos";
 import Feed from "../Feed";
 
-const Profile = ({}) => {
+const Profile = () => {
   const { profileId } = useParams();
 
   const [isProfileLoaded, setIsProfileLoaded] = React.useState(false);

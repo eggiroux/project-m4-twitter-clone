@@ -13,6 +13,7 @@ const Avatar = ({ size, avatarSrc, margin, border }) => {
         margin: margin,
         zIndex: 1,
       }}
+      alt={`avatar for user`}
     />
   );
 };
