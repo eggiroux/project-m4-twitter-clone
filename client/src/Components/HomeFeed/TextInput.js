@@ -6,9 +6,9 @@ const TextInput = () => {
 };
 
 const Wrapper = styled.textarea`
-  width: 75%;
   height: 200px;
   line-height: 35px;
+  width: 75%;
   font-size: 20px;
   resize: none;
   outline: none;

@@ -23,7 +23,7 @@ const CurrentUserProvider = ({ children }) => {
       }
     };
     fetchUser();
-  }, [isLoadingDone]);
+  }, []);
 
   return (
     <CurrentUserContext.Provider

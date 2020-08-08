@@ -5,8 +5,6 @@ import Spinner from "./Spinner";
 import FeedTweet from "./FeedTweet";
 import Error from "./Error";
 
-import { CurrentUserContext } from "./CurrentUserContext";
-
 const Feed = ({ feedUrl }) => {
   const [isFeedLoaded, setIsFeedLoaded] = React.useState(false);
   const [tweetsById, setTweetsById] = React.useState([]);
@@ -25,11 +23,11 @@ const Feed = ({ feedUrl }) => {
         setFeedError(true);
         console.log("showError triggered");
       }
+      setIsFeedLoaded(true);
     };
 
     if (!isFeedLoaded) {
       fetchFeed();
-      setIsFeedLoaded(true);
     }
   }, [isFeedLoaded, tweetsById, tweetIds, feedUrl]);
 
@@ -49,8 +47,12 @@ const Feed = ({ feedUrl }) => {
 };
 
 const Wrapper = styled.div`
-  border-bottom: 1px lightgrey solid;
   margin-top: 20px;
+
+  display: flex;
+  flex-direction: column;
+  border-top: none;
+  position: relative;
 `;
 
 export default Feed;

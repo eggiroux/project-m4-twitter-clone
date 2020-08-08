@@ -10,14 +10,13 @@ import Error from "../Error";
 
 const HomeFeed = () => {
   const { userError } = React.useContext(CurrentUserContext);
-  console.log(userError);
   return (
     <Wrapper>
       {userError ? (
         <Error />
       ) : (
         <>
-          <Header title="Home" />
+          <Header back={false}>Home</Header>
           <ComposeTweet />
           <Feed feedUrl="/api/me/home-feed" />{" "}
         </>
@@ -26,14 +25,6 @@ const HomeFeed = () => {
   );
 };
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 80%;
-  max-width: 750px;
-  border: 1px lightgrey solid;
-  border-top: none;
-  position: relative;
-`;
+const Wrapper = styled.div``;
 
 export default HomeFeed;

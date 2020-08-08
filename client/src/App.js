@@ -22,27 +22,29 @@ const App = () => {
       <Router>
         <Main>
           <Sidebar></Sidebar>
-          {isLoadingDone ? (
-            <Switch>
-              <Route exact path="/">
-                <HomeFeed />
-              </Route>
-              <Route path="/notifications">
-                <Notifications />
-              </Route>
-              <Route path="/bookmarks">
-                <Bookmarks />
-              </Route>
-              <Route path="/tweet/:tweetId">
-                <TweetDetails />
-              </Route>
-              <Route path="/:profileId">
-                <Profile />
-              </Route>
-            </Switch>
-          ) : (
-            <Spinner size="50px" />
-          )}
+          <PageBody>
+            {isLoadingDone ? (
+              <Switch>
+                <Route exact path="/">
+                  <HomeFeed />
+                </Route>
+                <Route path="/notifications">
+                  <Notifications />
+                </Route>
+                <Route path="/bookmarks">
+                  <Bookmarks />
+                </Route>
+                <Route path="/tweet/:tweetId">
+                  <TweetDetails />
+                </Route>
+                <Route path="/:profileId">
+                  <Profile />
+                </Route>
+              </Switch>
+            ) : (
+              <Spinner size="50px" />
+            )}
+          </PageBody>
         </Main>
       </Router>
     </>
@@ -53,6 +55,16 @@ const Main = styled.main`
   padding-top: 32px;
   padding-bottom: 32px;
   display: flex;
+`;
+
+const PageBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  max-width: 750px;
+  border: 1px lightgrey solid;
+  border-top: none;
+  position: relative;
 `;
 
 export default App;

@@ -17,11 +17,12 @@ const ActionBar = () => {
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-left: 10px;
+  margin: 0 75px;
+  width: 75%;
 
-  &:last-child {
-    margin-right: 100px;
-  }
+  /* &:last-child {
+    margin-right: 75px;
+  } */
 `;
 
 export default ActionBar;
