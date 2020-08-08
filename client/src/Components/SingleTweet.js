@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import moment from "moment";
+import { useHistory } from "react-router-dom";
 
 import Avatar from "./Avatar";
 import ActionBar from "./ActionBar";
@@ -9,28 +10,33 @@ import { FiRepeat } from "react-icons/fi";
 const SingleTweet = ({ tweet }) => {
   const date = moment(tweet.timestamp).format("h:mm A • MMM Do, YYYY");
 
+  const history = useHistory();
+
   let mediaType;
   let mediaSrc;
-  let retweetedFrom;
 
-  console.log(tweet);
+  const buttonToProfile = (ev) => {
+    history.push(`/${tweet.author.handle}`);
+    ev.stopPropagation();
+  };
+
+  //console.log(tweet);
 
   if (tweet.media[0]) {
     mediaType = tweet.media[0].type;
     mediaSrc = tweet.media[0].url;
   }
 
-  if (tweet.retweetFrom) {
-    retweetedFrom = tweet.retweetFrom.displayName;
-  }
-
   return (
     <Wrapper>
       <UserInfo>
         <Avatar size="50px" avatarSrc={tweet.author.avatarSrc} margin="10px" />
-        <Name>
-          {tweet.author.displayName} <Handle>@{tweet.author.handle}</Handle>
-        </Name>
+        <div>
+          <Name>
+            <Link onClick={buttonToProfile}>{tweet.author.displayName} </Link>
+          </Name>
+          <Handle>@{tweet.author.handle}</Handle>
+        </div>
       </UserInfo>
       <Tweet>
         <Status>{tweet.status}</Status>
@@ -65,8 +71,17 @@ const Handle = styled.p`
   margin-top: 5px;
 `;
 
+const Link = styled.p`
+  width: fit-content;
+  text-decoration: none;
+  color: black;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
 const Tweet = styled.div`
-  margin: 15px;
+  margin: 0px 15px;
 `;
 
 const Details = styled.div`

@@ -9,7 +9,6 @@ const Feed = ({ feedUrl }) => {
   const [isFeedLoaded, setIsFeedLoaded] = React.useState(false);
   const [tweetsById, setTweetsById] = React.useState([]);
   const [tweetIds, setTweetsIds] = React.useState([]);
-
   const [feedError, setFeedError] = React.useState(false);
 
   React.useEffect(() => {
@@ -29,7 +28,7 @@ const Feed = ({ feedUrl }) => {
     if (!isFeedLoaded) {
       fetchFeed();
     }
-  }, [isFeedLoaded, tweetsById, tweetIds, feedUrl]);
+  }, []);
 
   return (
     <Wrapper>
@@ -48,7 +47,6 @@ const Feed = ({ feedUrl }) => {
 
 const Wrapper = styled.div`
   margin-top: 20px;
-
   display: flex;
   flex-direction: column;
   border-top: none;

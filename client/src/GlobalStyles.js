@@ -3,6 +3,9 @@ import { createGlobalStyle } from "styled-components";
 import { COLORS } from "./constants";
 
 const GlobalStyles = createGlobalStyle`
+    html {
+    scroll-behavior: smooth;
+    }
     * {
         font-family: 'Raleway', sans-serif;
         box-sizing: border-box;

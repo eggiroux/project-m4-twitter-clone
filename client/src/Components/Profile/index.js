@@ -9,9 +9,9 @@ import Feed from "../Feed";
 
 const Profile = () => {
   const { profileId } = useParams();
-
   const [isProfileLoaded, setIsProfileLoaded] = React.useState(false);
   const [profile, setProfile] = React.useState(null);
+  window.scrollTo(0, 0);
 
   React.useEffect(() => {
     const fetchProfile = async () => {
@@ -23,7 +23,7 @@ const Profile = () => {
       fetchProfile();
       setIsProfileLoaded(true);
     }
-  });
+  }, []);
 
   return (
     <Wrapper>

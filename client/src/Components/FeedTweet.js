@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import moment from "moment";
+import { useHistory } from "react-router-dom";
 
 import Avatar from "./Avatar";
 import ActionBar from "./ActionBar";
@@ -8,12 +9,20 @@ import { FiRepeat } from "react-icons/fi";
 
 const FeedTweet = ({ tweet }) => {
   const date = moment(tweet.timestamp).format(" • MMM Do");
+  const history = useHistory();
 
   let mediaType;
   let mediaSrc;
   let retweetedFrom;
 
-  //console.log(tweet);
+  const buttonToTweetDetails = () => {
+    history.push(`/tweet/${tweet.id}`);
+  };
+
+  const buttonToProfile = (ev) => {
+    history.push(`/${tweet.author.handle}`);
+    ev.stopPropagation();
+  };
 
   if (tweet.media[0]) {
     mediaType = tweet.media[0].type;
@@ -25,7 +34,7 @@ const FeedTweet = ({ tweet }) => {
   }
 
   return (
-    <Wrapper>
+    <Wrapper onClick={buttonToTweetDetails}>
       <Avatar size="50px" avatarSrc={tweet.author.avatarSrc} margin="10px" />
       <Body>
         {retweetedFrom && (
@@ -35,7 +44,7 @@ const FeedTweet = ({ tweet }) => {
           </RetweetedFrom>
         )}
         <Name>
-          {tweet.author.displayName}{" "}
+          <Link onClick={buttonToProfile}>{tweet.author.displayName} </Link>
           <Details>
             @{tweet.author.handle}
             {date}
@@ -51,15 +60,14 @@ const FeedTweet = ({ tweet }) => {
 
 const Wrapper = styled.div`
   display: flex;
-  margin: 40px 10px;
-  padding-bottom: 20px;
+  padding: 25px 0px;
   align-items: flex-start;
   border-bottom: 1px lightgrey solid;
 `;
 const Body = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 10px;
+  margin: 10px 15px 0 0;
 `;
 
 const RetweetedFrom = styled.p`
@@ -70,8 +78,20 @@ const RetweetedFrom = styled.p`
   }
 `;
 
-const Name = styled.p`
+const Name = styled.div`
   font-weight: bold;
+  display: flex;
+  flex-direction: column;
+`;
+
+const Link = styled.p`
+  width: fit-content;
+  text-decoration: none;
+  color: black;
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
 `;
 
 const Details = styled.span`

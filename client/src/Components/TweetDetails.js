@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import SingleTweet from "./SingleTweet";
 import Header from "./Header";
@@ -12,6 +13,11 @@ const TweetDetails = () => {
   const [fetchError, setFetchError] = React.useState(false);
   const [tweet, setTweet] = React.useState(null);
   const { tweetId } = useParams();
+  const history = useHistory();
+
+  const backButton = () => {
+    history.push("/");
+  };
 
   React.useEffect(() => {
     const fetchTweet = async () => {
@@ -30,7 +36,9 @@ const TweetDetails = () => {
   }, []);
   return (
     <Wrapper>
-      <Header back={true}>Meow</Header>
+      <Header back={true} on>
+        Meow
+      </Header>
       {fetchError ? (
         <Error />
       ) : isTweetLoaded ? (
