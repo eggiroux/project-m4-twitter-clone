@@ -1,8 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
-const TextInput = () => {
-  return <Wrapper placeholder="What's Meowing?"></Wrapper>;
+const TextInput = ({ setCharacters }) => {
+  return (
+    <Wrapper
+      placeholder="What's Meowing?"
+      onChange={(ev) => {
+        setCharacters(ev.target.value.length);
+      }}
+    ></Wrapper>
+  );
 };
 
 const Wrapper = styled.textarea`

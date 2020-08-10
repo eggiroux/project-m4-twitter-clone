@@ -2,11 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { FiArrowLeft, FiAward } from "react-icons/fi";
+import { useHistory } from "react-router-dom";
 
 const Header = ({ back, children }) => {
+  const history = useHistory();
   return (
     <Wrapper>
-      {back && <FiArrowLeft style={{ marginLeft: "15px" }} />}
+      {back && (
+        <FiArrowLeft style={{ marginLeft: "15px" }} onClick={history.goBack} />
+      )}
       <Title>{children}</Title>
     </Wrapper>
   );

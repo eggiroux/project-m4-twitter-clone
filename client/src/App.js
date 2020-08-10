@@ -12,10 +12,10 @@ import TweetDetails from "./Components/TweetDetails";
 import Profile from "./Components/Profile";
 import Sidebar from "./Components/Sidebar";
 import Spinner from "./Components/Spinner";
-import Error from "./Components/Error";
 
 const App = () => {
-  const { isLoadingDone, userError } = React.useContext(CurrentUserContext);
+  const { isLoadingDone } = React.useContext(CurrentUserContext);
+  document.title = "Critter";
   return (
     <>
       <GlobalStyles />
@@ -52,9 +52,8 @@ const App = () => {
 };
 
 const Main = styled.main`
-  padding-top: 32px;
-  padding-bottom: 32px;
   display: flex;
+  overflow: hidden;
 `;
 
 const PageBody = styled.div`

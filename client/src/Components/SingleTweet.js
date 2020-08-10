@@ -5,7 +5,6 @@ import { useHistory } from "react-router-dom";
 
 import Avatar from "./Avatar";
 import ActionBar from "./ActionBar";
-import { FiRepeat } from "react-icons/fi";
 
 const SingleTweet = ({ tweet }) => {
   const date = moment(tweet.timestamp).format("h:mm A • MMM Do, YYYY");

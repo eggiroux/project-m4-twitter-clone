@@ -9,6 +9,7 @@ import { CurrentUserContext } from "../CurrentUserContext";
 import Error from "../Error";
 
 const HomeFeed = () => {
+  document.title = `Critter - Home`;
   const { userError } = React.useContext(CurrentUserContext);
   return (
     <Wrapper>

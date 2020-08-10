@@ -3,8 +3,8 @@ import styled from "styled-components";
 
 import { COLORS } from "../constants";
 
-const Button = ({ onClick, children }) => {
-  return <Wrapper>{children}</Wrapper>;
+const Button = ({ disabled, onClick, children }) => {
+  return <Wrapper disabled={disabled}>{children}</Wrapper>;
 };
 
 const Wrapper = styled.button`
@@ -16,6 +16,10 @@ const Wrapper = styled.button`
   background-color: ${COLORS.primary};
   padding: 10px 20px;
   margin-bottom: 10px;
+  &:disabled {
+    opacity: 0.5;
+    color: lightgrey;
+  }
 `;
 
 export default Button;

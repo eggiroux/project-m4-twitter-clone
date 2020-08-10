@@ -24,7 +24,11 @@ const Profile = () => {
       setIsProfileLoaded(true);
     }
   }, []);
-
+  if (profile) {
+    document.title = `Critter - ${profile.displayName}`;
+  } else {
+    document.title = `Critter - Profile Page`;
+  }
   return (
     <Wrapper>
       {profile ? (
