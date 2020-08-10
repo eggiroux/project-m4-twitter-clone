@@ -4,7 +4,11 @@ import styled from "styled-components";
 import { COLORS } from "../constants";
 
 const Button = ({ disabled, onClick, children }) => {
-  return <Wrapper disabled={disabled}>{children}</Wrapper>;
+  return (
+    <Wrapper disabled={disabled} onClick={onClick}>
+      {children}
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.button`

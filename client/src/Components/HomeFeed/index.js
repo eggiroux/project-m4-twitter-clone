@@ -11,6 +11,7 @@ import Error from "../Error";
 const HomeFeed = () => {
   document.title = `Critter - Home`;
   const { userError } = React.useContext(CurrentUserContext);
+  const [isFeedLoaded, setIsFeedLoaded] = React.useState(false);
   return (
     <Wrapper>
       {userError ? (
@@ -18,8 +19,15 @@ const HomeFeed = () => {
       ) : (
         <>
           <Header back={false}>Home</Header>
-          <ComposeTweet />
-          <Feed feedUrl="/api/me/home-feed" />{" "}
+          <ComposeTweet
+            isFeedLoaded={isFeedLoaded}
+            setIsFeedLoaded={setIsFeedLoaded}
+          />
+          <Feed
+            feedUrl="/api/me/home-feed"
+            isFeedLoaded={isFeedLoaded}
+            setIsFeedLoaded={setIsFeedLoaded}
+          />
         </>
       )}
     </Wrapper>

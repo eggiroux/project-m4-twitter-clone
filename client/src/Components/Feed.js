@@ -5,8 +5,7 @@ import Spinner from "./Spinner";
 import FeedTweet from "./FeedTweet";
 import Error from "./Error";
 
-const Feed = ({ feedUrl }) => {
-  const [isFeedLoaded, setIsFeedLoaded] = React.useState(false);
+const Feed = ({ feedUrl, isFeedLoaded, setIsFeedLoaded }) => {
   const [tweetsById, setTweetsById] = React.useState([]);
   const [tweetIds, setTweetsIds] = React.useState([]);
   const [feedError, setFeedError] = React.useState(false);
@@ -28,7 +27,7 @@ const Feed = ({ feedUrl }) => {
     if (!isFeedLoaded) {
       fetchFeed();
     }
-  }, []);
+  }, [isFeedLoaded]);
 
   return (
     <Wrapper>

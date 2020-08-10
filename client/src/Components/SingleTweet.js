@@ -61,7 +61,7 @@ const UserInfo = styled.div`
   margin-top: 10px;
 `;
 
-const Name = styled.p`
+const Name = styled.div`
   font-weight: bold;
 `;
 
