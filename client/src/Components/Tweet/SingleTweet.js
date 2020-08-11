@@ -3,6 +3,9 @@ import styled from "styled-components";
 import moment from "moment";
 import { useHistory } from "react-router-dom";
 
+import useKeydown from "../../Hooks/use-keydown.hook";
+import { clickOnSelectedLink } from "../../handlers";
+
 import { TweetContext } from "./TweetContext";
 
 import Avatar from "../Avatar";
@@ -30,6 +33,8 @@ const SingleTweet = () => {
     ev.stopPropagation();
   };
 
+  useKeydown("Enter", clickOnSelectedLink);
+
   if (media[0]) {
     mediaType = media[0].type;
     mediaSrc = media[0].url;
@@ -41,7 +46,9 @@ const SingleTweet = () => {
         <Avatar size="50px" avatarSrc={avatarSrc} margin="10px" />
         <div>
           <Name>
-            <Link onClick={buttonToProfile}>{displayName} </Link>
+            <Link tabIndex="0" onClick={buttonToProfile}>
+              {displayName}{" "}
+            </Link>
           </Name>
           <Handle>@{handle}</Handle>
         </div>

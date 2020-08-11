@@ -5,9 +5,13 @@ import { useHistory } from "react-router-dom";
 
 import { TweetContext } from "./TweetContext";
 
+import { clickOnSelectedLink } from "../../handlers";
+import useKeydown from "../../Hooks/use-keydown.hook";
+
 import Avatar from "../Avatar";
 import ActionBar from "./ActionBar";
 import { FiRepeat } from "react-icons/fi";
+import { COLORS } from "../../constants";
 
 const FeedTweet = () => {
   const {
@@ -46,8 +50,14 @@ const FeedTweet = () => {
     retweetedFrom = retweetFrom.displayName;
   }
 
+  useKeydown("Enter", clickOnSelectedLink);
+
   return (
-    <Wrapper onClick={buttonToTweetDetails}>
+    <Wrapper
+      onClick={buttonToTweetDetails}
+      tabIndex="0"
+      aria-label="view tweet"
+    >
       <Avatar size="50px" avatarSrc={avatarSrc} margin="10px" />
       <Tweet>
         {retweetedFrom && (
@@ -57,7 +67,13 @@ const FeedTweet = () => {
           </RetweetedFrom>
         )}
         <Name>
-          <Link onClick={buttonToProfile}>{displayName} </Link>
+          <Link
+            onClick={buttonToProfile}
+            aria-label="view author profile"
+            tabIndex="0"
+          >
+            {displayName}
+          </Link>
           <Details>
             @{handle}
             {date}
@@ -76,10 +92,14 @@ const FeedTweet = () => {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
-  padding: 25px 0px;
-  margin-top: 15px;
+  padding: 35px 0px;
+  margin-top: 5px;
   border-bottom: 1px lightgrey solid;
   width: 100%;
+
+  &:focus {
+    outline: 1px ${COLORS.highlight} solid;
+  }
 `;
 const Tweet = styled.div`
   display: flex;

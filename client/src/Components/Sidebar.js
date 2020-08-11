@@ -52,6 +52,9 @@ const Wrapper = styled.div`
   justify-content: start;
   height: 100vh;
   margin: 0 30px 0 100px;
+  @media (max-width: 1100px) {
+    margin-left: 30px;
+  }
 `;
 
 const NavList = styled.ul`
@@ -82,6 +85,9 @@ const NavigationItem = styled(NavLink)`
 
   & span {
     padding-left: 20px;
+    @media (max-width: 1100px) {
+      display: none;
+    }
   }
 
   &.active {

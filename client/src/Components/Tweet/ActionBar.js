@@ -3,7 +3,11 @@ import styled from "styled-components";
 
 import { TweetContext } from "./TweetContext";
 
+import useKeydown from "../../Hooks/use-keydown.hook";
+import { clickOnSelectedLink } from "../../handlers";
+
 import Action from "./Action";
+import Amount from "./Amount";
 import { FiMessageCircle, FiRepeat, FiHeart, FiShare } from "react-icons/fi";
 import { COLORS } from "../../constants";
 
@@ -17,22 +21,44 @@ const ActionBar = () => {
     numOfRetweets,
   } = React.useContext(TweetContext);
 
-  React.useEffect(() => {}, [numOfLikes, numOfRetweets]);
+  useKeydown("Enter", clickOnSelectedLink);
 
   return (
     <Wrapper>
-      <FiMessageCircle />
-      <Action color={COLORS.retweet} onClick={handleToggleRetweet}>
-        <FiRepeat
-          color={isRetweetedByCurrentUser ? COLORS.retweet : undefined}
-        />
-        {numOfRetweets !== 0 && <Amount>{numOfRetweets}</Amount>}
-      </Action>
-      <Action color={COLORS.like} onClick={handleToggleLike}>
-        <FiHeart color={isLikedByCurrentUser ? COLORS.like : undefined} />
-        {numOfLikes !== 0 && <Amount>{numOfLikes}</Amount>}
-      </Action>
-      <FiShare />
+      <ActionArea>
+        <Action color={COLORS.comment} tabIndex="0">
+          <FiMessageCircle />
+        </Action>
+      </ActionArea>
+      <ActionArea>
+        <Action
+          color={COLORS.retweet}
+          onClick={handleToggleRetweet}
+          tabIndex="0"
+        >
+          <FiRepeat
+            color={isRetweetedByCurrentUser ? COLORS.retweet : undefined}
+          />
+        </Action>
+        <Amount isHidden={numOfRetweets === 0 ? "hidden" : "visible"}>
+          {numOfRetweets}
+        </Amount>
+      </ActionArea>
+
+      <ActionArea>
+        <Action color={COLORS.like} onClick={handleToggleLike}>
+          <FiHeart color={isLikedByCurrentUser ? COLORS.like : undefined} />
+        </Action>
+        <Amount isHidden={numOfLikes === 0 ? "hidden" : "visible"}>
+          {numOfLikes}
+        </Amount>
+      </ActionArea>
+
+      <ActionArea>
+        <Action color={COLORS.comment} tabIndex="0">
+          <FiShare />
+        </Action>
+      </ActionArea>
     </Wrapper>
   );
 };
@@ -40,6 +66,7 @@ const ActionBar = () => {
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
   margin-left: 15px;
 
@@ -48,15 +75,10 @@ const Wrapper = styled.div`
   }
 `;
 
-// const Action = styled.div`
-//   display: flex;
-//   justify-content: center;
-// `;
-
-const Amount = styled.span`
-  color: black;
-  margin-top: 0;
-  margin-left: 5px;
+const ActionArea = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export default ActionBar;

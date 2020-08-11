@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-const Action = ({ color, onClick, toggleAction, children }) => {
+import { TweetContext } from "./TweetContext";
+
+const Action = ({ color, onClick, children }) => {
   return (
     <Wrapper color={color} onClick={onClick}>
       {children}
@@ -21,6 +23,7 @@ const Wrapper = styled.button`
   height: 35px;
   width: 35px;
   background: none;
+  outline: none;
 
   &:after {
     content: "";
@@ -33,7 +36,7 @@ const Wrapper = styled.button`
     background-color: ${(p) => p.color};
     opacity: 0;
   }
-
+  &:focus:after,
   &:hover:after {
     opacity: 0.2;
   }

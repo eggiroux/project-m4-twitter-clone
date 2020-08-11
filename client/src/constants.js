@@ -5,4 +5,5 @@ export const COLORS = {
 
   retweet: "rgb(23, 191, 99)",
   like: "rgb(224, 36, 94)",
+  comment: "blue",
 };

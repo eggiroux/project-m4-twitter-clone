@@ -1,15 +1,31 @@
 import React from "react";
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
 import { FiArrowLeft, FiAward } from "react-icons/fi";
 import { useHistory } from "react-router-dom";
 
+import { clickOnSelectedLink } from "../handlers";
+import useKeydown from "../Hooks/use-keydown.hook";
+
 const Header = ({ back, children }) => {
   const history = useHistory();
+
+  const goBack = () => {
+    history.goBack();
+  };
+
+  useKeydown("Enter", clickOnSelectedLink);
+
   return (
     <Wrapper>
       {back && (
-        <FiArrowLeft style={{ marginLeft: "15px" }} onClick={history.goBack} />
+        <span
+          tabIndex="0"
+          style={{ marginLeft: "15px" }}
+          onClick={goBack}
+          aria-label="go back"
+        >
+          <FiArrowLeft />
+        </span>
       )}
       <Title>{children}</Title>
     </Wrapper>
