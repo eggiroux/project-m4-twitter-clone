@@ -3,12 +3,25 @@ import styled from "styled-components";
 import moment from "moment";
 import { useHistory } from "react-router-dom";
 
+import { TweetContext } from "./TweetContext";
+
 import Avatar from "../Avatar";
 import ActionBar from "./ActionBar";
 import { FiRepeat } from "react-icons/fi";
 
-const FeedTweet = ({ tweet }) => {
-  const date = moment(tweet.timestamp).format(" • MMM Do");
+const FeedTweet = () => {
+  const {
+    id,
+    status,
+    displayName,
+    timestamp,
+    handle,
+    avatarSrc,
+    media,
+    retweetFrom,
+  } = React.useContext(TweetContext);
+
+  const date = moment(timestamp).format(" • MMM Do");
   const history = useHistory();
 
   let mediaType;
@@ -16,26 +29,26 @@ const FeedTweet = ({ tweet }) => {
   let retweetedFrom;
 
   const buttonToTweetDetails = () => {
-    history.push(`/tweet/${tweet.id}`);
+    history.push(`/tweet/${id}`);
   };
 
   const buttonToProfile = (ev) => {
-    history.push(`/${tweet.author.handle}`);
+    history.push(`/${handle}`);
     ev.stopPropagation();
   };
 
-  if (tweet.media[0]) {
-    mediaType = tweet.media[0].type;
-    mediaSrc = tweet.media[0].url;
+  if (media[0]) {
+    mediaType = media[0].type;
+    mediaSrc = media[0].url;
   }
 
-  if (tweet.retweetFrom) {
-    retweetedFrom = tweet.retweetFrom.displayName;
+  if (retweetFrom) {
+    retweetedFrom = retweetFrom.displayName;
   }
 
   return (
     <Wrapper onClick={buttonToTweetDetails}>
-      <Avatar size="50px" avatarSrc={tweet.author.avatarSrc} margin="10px" />
+      <Avatar size="50px" avatarSrc={avatarSrc} margin="10px" />
       <Tweet>
         {retweetedFrom && (
           <RetweetedFrom>
@@ -44,17 +57,17 @@ const FeedTweet = ({ tweet }) => {
           </RetweetedFrom>
         )}
         <Name>
-          <Link onClick={buttonToProfile}>{tweet.author.displayName} </Link>
+          <Link onClick={buttonToProfile}>{displayName} </Link>
           <Details>
-            @{tweet.author.handle}
+            @{handle}
             {date}
           </Details>
         </Name>
 
-        <Status>{tweet.status}</Status>
+        <Status>{status}</Status>
         {mediaType === "img" && <Media src={mediaSrc}></Media>}
 
-        <ActionBar numLikes={tweet.numLikes} numRetweets={tweet.numRetweets} />
+        <ActionBar />
       </Tweet>
     </Wrapper>
   );

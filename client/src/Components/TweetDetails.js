@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
+import TweetProvider from "./Tweet/TweetContext";
+
 import SingleTweet from "./Tweet/SingleTweet";
 import Header from "./Header";
 import Spinner from "./Spinner";
@@ -13,11 +15,6 @@ const TweetDetails = () => {
   const [fetchError, setFetchError] = React.useState(false);
   const [tweet, setTweet] = React.useState(null);
   const { tweetId } = useParams();
-  const history = useHistory();
-
-  const backButton = () => {
-    history.push("/");
-  };
 
   React.useEffect(() => {
     const fetchTweet = async () => {
@@ -42,7 +39,9 @@ const TweetDetails = () => {
       {fetchError ? (
         <Error />
       ) : isTweetLoaded ? (
-        <SingleTweet tweet={tweet} />
+        <TweetProvider tweet={tweet}>
+          <SingleTweet />
+        </TweetProvider>
       ) : (
         <Spinner size="50px" />
       )}

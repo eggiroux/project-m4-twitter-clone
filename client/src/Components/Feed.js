@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import TweetProvider from "./Tweet/TweetContext";
+
 import Spinner from "./Spinner";
 import FeedTweet from "./Tweet/FeedTweet";
 import Error from "./Error";
@@ -35,7 +37,11 @@ const Feed = ({ feedUrl, isFeedLoaded, setIsFeedLoaded }) => {
         <Error />
       ) : isFeedLoaded ? (
         Object.values(tweetIds).map((id) => {
-          return <FeedTweet tweet={tweetsById[id]} key={id} />;
+          return (
+            <TweetProvider tweet={tweetsById[id]} key={id}>
+              <FeedTweet />
+            </TweetProvider>
+          );
         })
       ) : (
         <Spinner size="50px" />

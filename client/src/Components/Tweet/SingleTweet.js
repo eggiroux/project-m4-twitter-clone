@@ -3,11 +3,22 @@ import styled from "styled-components";
 import moment from "moment";
 import { useHistory } from "react-router-dom";
 
+import { TweetContext } from "./TweetContext";
+
 import Avatar from "../Avatar";
 import ActionBar from "./ActionBar";
 
-const SingleTweet = ({ tweet }) => {
-  const date = moment(tweet.timestamp).format("h:mm A • MMM Do, YYYY");
+const SingleTweet = () => {
+  const {
+    status,
+    displayName,
+    timestamp,
+    handle,
+    avatarSrc,
+    media,
+  } = React.useContext(TweetContext);
+
+  const date = moment(timestamp).format("h:mm A • MMM Do, YYYY");
 
   const history = useHistory();
 
@@ -15,34 +26,32 @@ const SingleTweet = ({ tweet }) => {
   let mediaSrc;
 
   const buttonToProfile = (ev) => {
-    history.push(`/${tweet.author.handle}`);
+    history.push(`/${handle}`);
     ev.stopPropagation();
   };
 
-  console.log(tweet);
-
-  if (tweet.media[0]) {
-    mediaType = tweet.media[0].type;
-    mediaSrc = tweet.media[0].url;
+  if (media[0]) {
+    mediaType = media[0].type;
+    mediaSrc = media[0].url;
   }
 
   return (
     <Wrapper>
       <UserInfo>
-        <Avatar size="50px" avatarSrc={tweet.author.avatarSrc} margin="10px" />
+        <Avatar size="50px" avatarSrc={avatarSrc} margin="10px" />
         <div>
           <Name>
-            <Link onClick={buttonToProfile}>{tweet.author.displayName} </Link>
+            <Link onClick={buttonToProfile}>{displayName} </Link>
           </Name>
-          <Handle>@{tweet.author.handle}</Handle>
+          <Handle>@{handle}</Handle>
         </div>
       </UserInfo>
       <Tweet>
-        <Status>{tweet.status}</Status>
+        <Status>{status}</Status>
         {mediaType === "img" && <Media src={mediaSrc}></Media>}
         <Details> {`${date} • Critter web app`}</Details>
       </Tweet>
-      <ActionBar numLikes={tweet.numLikes} numRetweets={tweet.numRetweets} />
+      <ActionBar />
     </Wrapper>
   );
 };
