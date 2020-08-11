@@ -6,19 +6,27 @@ import Spinner from "../Spinner";
 import Avatar from "../Avatar";
 import ProfileInfos from "./ProfileInfos";
 import Feed from "../Feed";
+import Error from "../Error";
 
 const Profile = () => {
   const { profileId } = useParams();
   const [isProfileLoaded, setIsProfileLoaded] = React.useState(false);
   const [profile, setProfile] = React.useState(null);
   const [isFeedLoaded, setIsFeedLoaded] = React.useState(false);
+  const [profileError, setProfileError] = React.useState(false);
+
   window.scrollTo(0, 0);
 
   React.useEffect(() => {
     const fetchProfile = async () => {
-      const response = await fetch(`/api/${profileId}/profile`);
-      const profile = await response.json();
-      setProfile(profile.profile);
+      try {
+        const response = await fetch(`/api/${profileId}/profile`);
+        const profile = await response.json();
+        setProfile(profile.profile);
+      } catch (err) {
+        console.log("error caught");
+        setProfileError(true);
+      }
     };
     if (!isProfileLoaded) {
       fetchProfile();
@@ -32,7 +40,9 @@ const Profile = () => {
   }
   return (
     <Wrapper>
-      {profile ? (
+      {profileError ? (
+        <Error />
+      ) : profile ? (
         <>
           <Banner style={{ backgroundImage: `url(${profile.bannerSrc})` }} />{" "}
           <Avatar

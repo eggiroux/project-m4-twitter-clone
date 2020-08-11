@@ -36,7 +36,7 @@ const FeedTweet = ({ tweet }) => {
   return (
     <Wrapper onClick={buttonToTweetDetails}>
       <Avatar size="50px" avatarSrc={tweet.author.avatarSrc} margin="10px" />
-      <Body>
+      <Tweet>
         {retweetedFrom && (
           <RetweetedFrom>
             <FiRepeat />
@@ -50,29 +50,34 @@ const FeedTweet = ({ tweet }) => {
             {date}
           </Details>
         </Name>
+
         <Status>{tweet.status}</Status>
         {mediaType === "img" && <Media src={mediaSrc}></Media>}
-        <ActionBar />
-      </Body>
+
+        <ActionBar numLikes={tweet.numLikes} numRetweets={tweet.numRetweets} />
+      </Tweet>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
   display: flex;
+  flex-direction: row;
   padding: 25px 0px;
-  align-items: flex-start;
+  margin-top: 15px;
   border-bottom: 1px lightgrey solid;
+  width: 100%;
 `;
-const Body = styled.div`
+const Tweet = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 10px 15px 0 0;
+  justify-content: flex-start;
+  align-items: flex-start;
 `;
 
 const RetweetedFrom = styled.p`
   font-weight: 300;
-  margin: -25px 0 10px -25px;
+  margin: -30px 0 10px -25px;
   & span {
     margin-left: 10px;
   }
@@ -100,7 +105,7 @@ const Details = styled.span`
 
 const Media = styled.img`
   border-radius: 30px;
-  width: 100%;
+  width: 95%;
   margin-bottom: 15px;
 `;
 

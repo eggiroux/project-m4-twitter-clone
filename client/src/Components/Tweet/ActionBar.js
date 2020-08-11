@@ -3,15 +3,17 @@ import styled from "styled-components";
 
 import { FiMessageCircle, FiRepeat, FiHeart, FiShare } from "react-icons/fi";
 
-const ActionBar = () => {
+const ActionBar = ({ numLikes, numRetweets }) => {
   return (
     <Wrapper>
       <FiMessageCircle />
-      <Retweets>
-        <FiRepeat /> <Amount>5</Amount>
-      </Retweets>
-
-      <FiHeart />
+      <Action>
+        <FiRepeat /> <Amount>{numLikes}</Amount>
+      </Action>
+      <Action>
+        <FiHeart />
+        <Amount>{numRetweets}</Amount>
+      </Action>
       <FiShare />
     </Wrapper>
   );
@@ -20,15 +22,14 @@ const ActionBar = () => {
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: 0 75px;
-  width: 75%;
+  width: 100%;
 
-  /* &:last-child {
-    margin-right: 75px;
-  } */
+  &:last-child {
+    padding-right: 75px;
+  }
 `;
 
-const Retweets = styled.div`
+const Action = styled.div`
   display: flex;
   justify-content: center;
 `;

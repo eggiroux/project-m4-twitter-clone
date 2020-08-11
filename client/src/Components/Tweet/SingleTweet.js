@@ -19,7 +19,7 @@ const SingleTweet = ({ tweet }) => {
     ev.stopPropagation();
   };
 
-  //console.log(tweet);
+  console.log(tweet);
 
   if (tweet.media[0]) {
     mediaType = tweet.media[0].type;
@@ -42,7 +42,7 @@ const SingleTweet = ({ tweet }) => {
         {mediaType === "img" && <Media src={mediaSrc}></Media>}
         <Details> {`${date} • Critter web app`}</Details>
       </Tweet>
-      <ActionBar />
+      <ActionBar numLikes={tweet.numLikes} numRetweets={tweet.numRetweets} />
     </Wrapper>
   );
 };
