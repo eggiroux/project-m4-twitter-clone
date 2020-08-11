@@ -11,6 +11,7 @@ const Profile = () => {
   const { profileId } = useParams();
   const [isProfileLoaded, setIsProfileLoaded] = React.useState(false);
   const [profile, setProfile] = React.useState(null);
+  const [isFeedLoaded, setIsFeedLoaded] = React.useState(false);
   window.scrollTo(0, 0);
 
   React.useEffect(() => {
@@ -50,7 +51,11 @@ const Profile = () => {
             numFollowers={profile.numFollowers}
             numFollowing={profile.numFollowing}
           />
-          <Feed feedUrl={`api/${profile.handle}/feed`} />
+          <Feed
+            feedUrl={`api/${profile.handle}/feed`}
+            isFeedLoaded={isFeedLoaded}
+            setIsFeedLoaded={setIsFeedLoaded}
+          />
         </>
       ) : (
         <Spinner size="50px" />

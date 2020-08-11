@@ -3,7 +3,7 @@ import styled from "styled-components";
 import moment from "moment";
 import { useHistory } from "react-router-dom";
 
-import Avatar from "./Avatar";
+import Avatar from "../Avatar";
 import ActionBar from "./ActionBar";
 
 const SingleTweet = ({ tweet }) => {

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import Spinner from "./Spinner";
-import FeedTweet from "./FeedTweet";
+import FeedTweet from "./Tweet/FeedTweet";
 import Error from "./Error";
 
 const Feed = ({ feedUrl, isFeedLoaded, setIsFeedLoaded }) => {

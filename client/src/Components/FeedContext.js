@@ -2,7 +2,7 @@ import React from "react";
 
 export const FeedContext = React.createContext(null);
 
-const FeedProvider = ({ children }) => {
+const FeedProvider = ({ children, feedUrl }) => {
   const [isFeedLoaded, setIsFeedLoaded] = React.useState();
   const [feedError, setFeedError] = React.useState(false);
   const [tweetsById, setTweetsById] = React.useState([]);
@@ -13,15 +13,15 @@ const FeedProvider = ({ children }) => {
       try {
         const response = await fetch(`${feedUrl}`);
         const feed = await response.json();
-        if (!isLoadingDone) {
+        if (!isFeedLoaded) {
           setTweetsById(feed.tweetsById);
           setTweetsIds(feed.tweetIds);
           setIsFeedLoaded(true);
         }
       } catch (err) {
         console.log("caught!");
-        setUserError(true);
-        setIsLoadingDone(true);
+        setFeedError(true);
+        setIsFeedLoaded(true);
       }
     };
     fetchFeed();
@@ -36,4 +36,4 @@ const FeedProvider = ({ children }) => {
   );
 };
 
-export default CurrentUserProvider;
+export default FeedProvider;

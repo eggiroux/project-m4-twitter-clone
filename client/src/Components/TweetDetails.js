@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
-import SingleTweet from "./SingleTweet";
+import SingleTweet from "./Tweet/SingleTweet";
 import Header from "./Header";
 import Spinner from "./Spinner";
 import Error from "./Error";

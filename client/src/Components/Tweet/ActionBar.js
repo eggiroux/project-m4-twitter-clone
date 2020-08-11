@@ -7,7 +7,10 @@ const ActionBar = () => {
   return (
     <Wrapper>
       <FiMessageCircle />
-      <FiRepeat />
+      <Retweets>
+        <FiRepeat /> <Amount>5</Amount>
+      </Retweets>
+
       <FiHeart />
       <FiShare />
     </Wrapper>
@@ -23,6 +26,17 @@ const Wrapper = styled.div`
   /* &:last-child {
     margin-right: 75px;
   } */
+`;
+
+const Retweets = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const Amount = styled.span`
+  color: black;
+  margin-top: 0;
+  margin-left: 5px;
 `;
 
 export default ActionBar;
