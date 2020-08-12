@@ -24,6 +24,7 @@ const Particle = ({ distanceMax, distanceMin, angle, children }) => {
   //console.log(animDelay);
 
   //console.log(x, y);
+
   const translationScaleStyle = useSpring({
     transform: `translate(${finalX}px,${finalY}px) scale(0.5)`,
     from: {
@@ -34,7 +35,6 @@ const Particle = ({ distanceMax, distanceMin, angle, children }) => {
       tension: 100,
       friction: 12,
     },
-    immediate: removeAnims,
   });
 
   const opacityStyle = useSpring({
@@ -46,14 +46,17 @@ const Particle = ({ distanceMax, distanceMin, angle, children }) => {
     config: {
       duration: 300,
     },
-    immediate: removeAnims,
   });
 
-  return (
-    <animated.div style={{ ...translationScaleStyle, ...opacityStyle }}>
-      {children}
-    </animated.div>
-  );
+  if (removeAnims) {
+    return <></>;
+  } else {
+    return (
+      <animated.div style={{ ...translationScaleStyle, ...opacityStyle }}>
+        {children}
+      </animated.div>
+    );
+  }
 };
 
 export default Particle;
