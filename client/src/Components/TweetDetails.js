@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
-import { useHistory } from "react-router-dom";
 
 import TweetProvider from "./Tweet/TweetContext";
 

@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import moment from "moment";
+import React from "react";
 
 export const TweetContext = React.createContext(null);
 
@@ -29,7 +28,7 @@ const TweetProvider = ({ tweet, children }) => {
         }
 
         setIsLiked(!isLiked);
-        // console.log("liked successfully");
+        //console.log("toggled isLiked successfully");
       }
     } catch (err) {
       console.log("tweet like error");
@@ -62,7 +61,6 @@ const TweetProvider = ({ tweet, children }) => {
       console.log("tweet RT error");
     }
   };
-
   return (
     <TweetContext.Provider
       value={{
@@ -71,8 +69,8 @@ const TweetProvider = ({ tweet, children }) => {
         displayName: tweet.author.displayName,
         handle: tweet.author.handle,
         avatarSrc: tweet.author.avatarSrc,
-        isRetweetedByCurrentUser: tweet.isRetweeted,
-        isLikedByCurrentUser: tweet.isLiked,
+        isRetweetedByCurrentUser: isRetweeted,
+        isLikedByCurrentUser: isLiked,
         timestamp: tweet.timestamp,
         numOfLikes,
         numOfRetweets,

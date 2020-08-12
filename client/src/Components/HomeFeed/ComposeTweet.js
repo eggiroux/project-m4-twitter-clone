@@ -36,9 +36,9 @@ const ComposeTweet = ({ isFeedLoaded, setIsFeedLoaded }) => {
         },
       });
       const tweetData = await response.json();
-      console.log(tweetData);
+      //console.log(tweetData);
       setIsFeedLoaded(false);
-      console.log("just setIsFeedLoaded from postTweet");
+      //console.log("just setIsFeedLoaded from postTweet");
     } catch (err) {
       console.log(err);
     }

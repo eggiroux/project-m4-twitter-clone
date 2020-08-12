@@ -12,7 +12,7 @@ const Error = () => {
       <ErrorText>
         <Header>An unknown error has occured.</Header>
         <ErrorBody>
-          Please try refreshing the page, or <a href="#">contact support</a> if
+          Please try refreshing the page, or <a href="/">contact support</a> if
           the problem persists.
         </ErrorBody>
       </ErrorText>

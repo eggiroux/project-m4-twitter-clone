@@ -3,18 +3,18 @@ import styled from "styled-components";
 
 import { TweetContext } from "./TweetContext";
 
-import useKeydown from "../../Hooks/use-keydown.hook";
 import { clickOnSelectedLink } from "../../handlers";
+import { COLORS } from "../../constants";
+import useKeydown from "../../Hooks/use-keydown.hook";
 
 import Action from "./Action";
 import Amount from "./Amount";
-import { FiMessageCircle, FiRepeat, FiHeart, FiShare } from "react-icons/fi";
-import { COLORS } from "../../constants";
+import LikeButton from "./LikeButton";
+import { FiMessageCircle, FiRepeat, FiShare } from "react-icons/fi";
 
 const ActionBar = () => {
   const {
     isRetweetedByCurrentUser,
-    isLikedByCurrentUser,
     handleToggleRetweet,
     handleToggleLike,
     numOfLikes,
@@ -47,7 +47,7 @@ const ActionBar = () => {
 
       <ActionArea>
         <Action color={COLORS.like} onClick={handleToggleLike}>
-          <FiHeart color={isLikedByCurrentUser ? COLORS.like : undefined} />
+          <LikeButton />
         </Action>
         <Amount isHidden={numOfLikes === 0 ? "hidden" : "visible"}>
           {numOfLikes}

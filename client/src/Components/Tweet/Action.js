@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-import { TweetContext } from "./TweetContext";
-
 const Action = ({ color, onClick, children }) => {
   return (
     <Wrapper color={color} onClick={onClick}>

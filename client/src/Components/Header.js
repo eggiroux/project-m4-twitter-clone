@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { FiArrowLeft, FiAward } from "react-icons/fi";
+import { FiArrowLeft } from "react-icons/fi";
 import { useHistory } from "react-router-dom";
 
 import { clickOnSelectedLink } from "../handlers";
