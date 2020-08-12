@@ -2,6 +2,9 @@ import React from "react";
 import { useSpring, animated } from "react-spring";
 
 const ScaleIn = ({ children }) => {
+  const removeAnims = window.matchMedia("(prefers-reduced-motion: reduce)")
+    .matches;
+
   const style = useSpring({
     display: "flex",
     justifyContent: "center",
@@ -15,6 +18,7 @@ const ScaleIn = ({ children }) => {
       tension: 125,
       friction: 8,
     },
+    immediate: removeAnims,
   });
   return <animated.div style={style}>{children}</animated.div>;
 };

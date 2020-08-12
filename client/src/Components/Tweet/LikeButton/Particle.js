@@ -4,6 +4,9 @@ import { animated, useSpring } from "react-spring";
 import { random } from "../../../utils";
 
 const Particle = ({ distanceMax, distanceMin, angle, children }) => {
+  const removeAnims = window.matchMedia("(prefers-reduced-motion: reduce)")
+    .matches;
+
   const convertDegreesToRadians = (angle) => (angle * Math.PI) / 180;
   const angleInRads = convertDegreesToRadians(angle);
 
@@ -31,6 +34,7 @@ const Particle = ({ distanceMax, distanceMin, angle, children }) => {
       tension: 100,
       friction: 12,
     },
+    immediate: removeAnims,
   });
 
   const opacityStyle = useSpring({
@@ -42,6 +46,7 @@ const Particle = ({ distanceMax, distanceMin, angle, children }) => {
     config: {
       duration: 300,
     },
+    immediate: removeAnims,
   });
 
   return (

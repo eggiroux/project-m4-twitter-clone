@@ -28,10 +28,14 @@ const fade = keyframes`
 `;
 
 const Wrapper = styled.div`
-  display: block;
-  border-radius: 50%;
-  z-index: 1;
-  animation: ${scale} 300ms ease-in forwards, ${fade} 500ms forwards ease-in;
+  display: none;
+
+  @media (prefers-reduced-motion: no-preference) {
+    display: block;
+    border-radius: 50%;
+    z-index: 1;
+    animation: ${scale} 300ms ease-in forwards, ${fade} 500ms forwards ease-in;
+  }
 `;
 
 export default PoppingCircle;
