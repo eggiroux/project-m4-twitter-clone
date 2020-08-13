@@ -63,7 +63,7 @@ const FeedTweet = () => {
         {retweetedFrom && (
           <RetweetedFrom>
             <FiRepeat />
-            <span>{retweetedFrom} retweeted</span>
+            <span>{retweetedFrom} remeowed</span>
           </RetweetedFrom>
         )}
         <Name>

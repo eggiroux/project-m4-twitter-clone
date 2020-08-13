@@ -21,7 +21,7 @@ const HomeFeed = () => {
           <Header back={false}>Home</Header>
           <ComposeTweet
             isFeedLoaded={isFeedLoaded}
-            setIsFeedLoaded={setIsFeedLoaded}
+            onSubmit={setIsFeedLoaded}
           />
           <Feed
             feedUrl="/api/me/home-feed"

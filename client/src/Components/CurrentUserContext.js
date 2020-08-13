@@ -23,11 +23,11 @@ const CurrentUserProvider = ({ children }) => {
       }
     };
     fetchUser();
-  }, []);
+  }, [isLoadingDone]);
 
   return (
     <CurrentUserContext.Provider
-      value={{ currentUser, isLoadingDone, userError }}
+      value={{ currentUser, isLoadingDone, userError, setIsLoadingDone }}
     >
       {children}
     </CurrentUserContext.Provider>

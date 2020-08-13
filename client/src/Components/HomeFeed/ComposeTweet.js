@@ -8,7 +8,7 @@ import TextInput from "./TextInput";
 import Button from "../Button";
 import CharacterCounter from "./CharacterCounter";
 
-const ComposeTweet = ({ isFeedLoaded, setIsFeedLoaded }) => {
+const ComposeTweet = ({ isFeedLoaded, onSubmit }) => {
   const { currentUser } = React.useContext(CurrentUserContext);
   const [characters, setCharacters] = React.useState(0);
   const [disableSubmit, setDisableSubmit] = React.useState(false);
@@ -24,6 +24,7 @@ const ComposeTweet = ({ isFeedLoaded, setIsFeedLoaded }) => {
   const postTweet = async (ev) => {
     ev.preventDefault();
     console.log(status);
+
     try {
       const response = await fetch("/api/tweet", {
         method: "POST",
@@ -37,7 +38,7 @@ const ComposeTweet = ({ isFeedLoaded, setIsFeedLoaded }) => {
       });
       const tweetData = await response.json();
       //console.log(tweetData);
-      setIsFeedLoaded(false);
+      onSubmit(false);
       //console.log("just setIsFeedLoaded from postTweet");
     } catch (err) {
       console.log(err);
@@ -70,6 +71,7 @@ const Wrapper = styled.div`
   align-items: flex-start;
   border-bottom: 1px solid grey;
   position: relative;
+  background-color: white;
 `;
 
 const Divider = styled.div`

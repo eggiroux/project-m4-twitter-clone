@@ -1,12 +1,24 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import { CurrentUserContext } from "./CurrentUserContext";
 
 import { COLORS } from "../constants";
 import logoSrc from "../assets/logo.svg";
-import { FiHome, FiUser, FiBookmark, FiBell } from "react-icons/fi";
+import { FiHome, FiUser, FiBookmark, FiBell, FiFeather } from "react-icons/fi";
+import ComposeModal from "./ComposeModal";
 
 const Sidebar = () => {
+  const [modalOpen, setModalOpen] = React.useState(false);
+  const { setIsLoadingDone } = React.useContext(CurrentUserContext);
+
+  const openModal = () => setModalOpen(true);
+  const closeModal = () => setModalOpen(false);
+  const closeModalAfterTweet = () => {
+    setModalOpen(false);
+    setIsLoadingDone(false);
+  };
+
   return (
     <Wrapper>
       <Logo src={logoSrc} alt="critter logo" />
@@ -36,6 +48,15 @@ const Sidebar = () => {
           </NavigationItem>
         </li>
       </NavList>
+      <ButtonLong onClick={openModal}>Meow</ButtonLong>
+      <ButtonSmall onClick={openModal}>
+        <FiFeather />
+      </ButtonSmall>
+      <ComposeModal
+        modalOpen={modalOpen}
+        closeModal={closeModal}
+        closeModalAfterTweet={closeModalAfterTweet}
+      ></ComposeModal>
     </Wrapper>
   );
 };
@@ -74,6 +95,10 @@ const NavigationItem = styled(NavLink)`
   color: black;
   padding: 10px 20px 10px 15px;
 
+  @media (max-width: 1100px) {
+    padding: 10px 15px 10px 15px;
+  }
+
   &:hover {
     background: ${COLORS.highlight};
     color: ${COLORS.primary};
@@ -92,6 +117,38 @@ const NavigationItem = styled(NavLink)`
 
   &.active {
     color: ${COLORS.primary};
+  }
+`;
+
+const ButtonLong = styled.button`
+  border-radius: 25px;
+  color: white;
+  font-size: 20px;
+  outline: none;
+  border: none;
+  background-color: ${COLORS.primary};
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  @media (max-width: 1100px) {
+    display: none;
+  }
+`;
+
+const ButtonSmall = styled.button`
+  display: none;
+  @media (max-width: 1100px) {
+    display: inline-block;
+    border-radius: 50%;
+    padding-top: 5px;
+    color: white;
+    font-size: 20px;
+    outline: none;
+    border: none;
+    background-color: ${COLORS.primary};
+    margin-bottom: 10px;
+    height: 45px;
+    width: 45px;
+    margin: 0 auto;
   }
 `;
 

@@ -10,6 +10,7 @@ import useKeydown from "../../Hooks/use-keydown.hook";
 import Action from "./Action";
 import Amount from "./Amount";
 import LikeButton from "./LikeButton";
+import ScaleIn from "./LikeButton/ScaleIn";
 import { FiMessageCircle, FiRepeat, FiShare } from "react-icons/fi";
 
 const ActionBar = () => {
@@ -36,9 +37,17 @@ const ActionBar = () => {
           onClick={handleToggleRetweet}
           tabIndex="0"
         >
-          <FiRepeat
-            color={isRetweetedByCurrentUser ? COLORS.retweet : undefined}
-          />
+          {isRetweetedByCurrentUser ? (
+            <ScaleIn>
+              <FiRepeat
+                color={isRetweetedByCurrentUser ? COLORS.retweet : undefined}
+              />
+            </ScaleIn>
+          ) : (
+            <FiRepeat
+              color={isRetweetedByCurrentUser ? COLORS.retweet : undefined}
+            />
+          )}
         </Action>
         <Amount isHidden={numOfRetweets === 0 ? "hidden" : "visible"}>
           {numOfRetweets}

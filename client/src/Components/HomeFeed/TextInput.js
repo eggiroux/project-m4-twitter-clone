@@ -31,6 +31,7 @@ const Wrapper = styled.textarea`
   outline: none;
   border: none;
   margin: 10px;
+  background-color: white;
 
   &:focus::placeholder {
     opacity: 0.5;

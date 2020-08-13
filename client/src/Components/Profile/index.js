@@ -2,6 +2,8 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
+import { CurrentUserContext } from "../CurrentUserContext";
+
 import Spinner from "../Spinner";
 import Avatar from "../Avatar";
 import ProfileInfos from "./ProfileInfos";
