@@ -15,9 +15,11 @@ const ComposeTweet = ({ isFeedLoaded, onSubmit }) => {
   const [status, setStatus] = React.useState("");
 
   React.useEffect(() => {
-    if (280 - characters <= 0) {
+    if (280 - characters <= 0 || characters === 0) {
       setDisableSubmit(true);
       //console.log("disabling submit", disableSubmit);
+    } else {
+      setDisableSubmit(false);
     }
   }, [characters]);
 

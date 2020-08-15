@@ -21,7 +21,7 @@ const Feed = ({ feedUrl, isFeedLoaded, setIsFeedLoaded }) => {
         setTweetsIds(feed.tweetIds);
       } catch (err) {
         setFeedError(true);
-        console.log("showError triggered");
+        console.log("showError triggered", feedUrl);
       }
       setIsFeedLoaded(true);
     };
