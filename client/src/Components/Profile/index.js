@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
-import { CurrentUserContext } from "../CurrentUserContext";
+import FeedSelector from "./FeedSelector";
 
 import Spinner from "../Spinner";
 import Avatar from "../Avatar";
@@ -16,6 +16,7 @@ const Profile = () => {
   const [profile, setProfile] = React.useState(null);
   const [isFeedLoaded, setIsFeedLoaded] = React.useState(false);
   const [profileError, setProfileError] = React.useState(false);
+  const [selectedFeed, setSelectedFeed] = React.useState(1);
 
   window.scrollTo(0, 0);
 
@@ -63,6 +64,13 @@ const Profile = () => {
             numFollowers={profile.numFollowers}
             numFollowing={profile.numFollowing}
           />
+          <FeedSwitch>
+            <FeedSelector isSelected={selectedFeed === 1} setSelectedFeed>
+              Tweets
+            </FeedSelector>
+            <FeedSelector isSelected={selectedFeed === 2}>Media</FeedSelector>
+            <FeedSelector isSelected={selectedFeed === 3}>Likes</FeedSelector>
+          </FeedSwitch>
           <Feed
             feedUrl={`api/${profile.handle}/feed`}
             isFeedLoaded={isFeedLoaded}
@@ -89,6 +97,10 @@ const Banner = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+`;
+
+const FeedSwitch = styled.div`
+  display: flex;
 `;
 
 export default Profile;

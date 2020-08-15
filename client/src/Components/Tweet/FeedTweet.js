@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import moment from "moment";
 import { useHistory } from "react-router-dom";
 
@@ -106,6 +106,7 @@ const Tweet = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  width: 100%;
 `;
 
 const RetweetedFrom = styled.p`
